@@ -9,7 +9,7 @@ class Puesto extends Model
 {
     use HasFactory;
     protected $table = 'puesto';
-    protected $fillable = ['nombre', 'salario_mensual', 'id_unidad_organizativa'];
+    protected $fillable = ['nombre', 'salario_mensual_base', 'id_unidad_organizativa'];
 
     public function unidad_organizativa()
     {
