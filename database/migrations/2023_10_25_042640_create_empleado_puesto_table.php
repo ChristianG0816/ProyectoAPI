@@ -17,6 +17,7 @@ class CreateEmpleadoPuestoTable extends Migration
             $table->id();
             $table->date('fecha_inicio');
             $table->date('fecha_fin')->nullable();
+            $table->float('salario_mensual', 8, 2);
             $table->boolean('actual');
             $table->boolean('cambio_puesto');
             $table->foreignId('id_empleado')->constrained('empleado')->onDelete('restrict')->onUpdate('cascade');

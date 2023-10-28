@@ -16,7 +16,7 @@ class CreatePuestoTable extends Migration
         Schema::create('puesto', function (Blueprint $table) {
             $table->id();
             $table->string('nombre', 100); 
-            $table->float('salario_mensual', 8, 2);
+            $table->float('salario_mensual_base', 8, 2);
             $table->foreignId('id_unidad_organizativa')->constrained('unidad_organizativa')->onDelete('restrict')->onUpdate('cascade');
             $table->timestamps();
         });

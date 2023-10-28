@@ -15,6 +15,7 @@ class CreateJornadaTable extends Migration
     {
         Schema::create('jornada', function (Blueprint $table) {
             $table->id();
+            $table->string('codigo', 50);
             $table->time('hora_entrada');
             $table->time('hora_salida');
             $table->timestamps();

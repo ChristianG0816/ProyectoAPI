@@ -9,5 +9,5 @@ class Jornada extends Model
 {
     use HasFactory;
     protected $table = 'jornada';
-    protected $fillable = ['hora_entrada', 'hora_salida'];
+    protected $fillable = ['codigo','hora_entrada', 'hora_salida'];
 }
