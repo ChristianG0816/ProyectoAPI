@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NominaController;
 use App\Http\Controllers\MunicipioController;
+use App\Http\Controllers\PuestoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,5 +23,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource("nomina", NominaController::class);
+Route::resource("nomina", NominaController::class)->names('nomina');
 Route::get('get-municipios', [MunicipioController::class, 'getMunicipios'])->name('get-municipios');
+Route::get('get-salario-puesto', [PuestoController::class, 'getSalarioPuesto'])->name('get-salario-puesto');

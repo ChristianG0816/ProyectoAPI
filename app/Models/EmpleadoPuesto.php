@@ -9,7 +9,7 @@ class EmpleadoPuesto extends Model
 {
     use HasFactory;
     protected $table = 'empleado_puesto';
-    protected $fillable = ['fecha_inicio', 'fecha_fin', 'salario', 'actual', 'cambio_puesto', 'id_empleado', 'id_puesto', 'id_jornada'];
+    protected $fillable = ['fecha_inicio', 'fecha_fin', 'salario_mensual', 'actual', 'cambio_puesto', 'id_empleado', 'id_puesto', 'id_jornada'];
 
     public function empleado()
     {

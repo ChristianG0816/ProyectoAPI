@@ -1,13 +1,14 @@
 @extends('adminlte::page')
 @section('title', 'Nomina')
 @section('content_header')
-<h1>Nueva Contratación</h1>
+<h1>Edición de Información de Empleado</h1>
 @stop
 @section('content')
 <div class="row justify-content-center">
     <div class="col-md-8">
-        <form method="POST" action="{{ route('nomina.store') }}">
+        <form method="POST" action="{{ route('nomina.update', ['nomina' => $empleado->id])}}">
             @csrf <!-- Agrega el token CSRF para proteger el formulario -->
+            @method('PATCH') <!-- Cambia el method por PUT -->
             <div class="card">
                 <div class="card-header">Información del Empleado</div>
                 <div class="card-body">
@@ -20,28 +21,28 @@
                                 <!-- Columna izquierda -->
                                 <div class="form-group">
                                     <label for="codigo" class="text-secondary">Código*</label>
-                                    <input type="text" name="codigo" class="form-control{{ $errors->has('codigo') ? ' is-invalid' : '' }}" maxlength="7" value="{{ old('codigo') }}" tabindex="1">
+                                    <input type="text" name="codigo" class="form-control{{ $errors->has('codigo') ? ' is-invalid' : '' }}" maxlength="7" value="{{ old('codigo', $empleado->codigo) }}" tabindex="1">
                                     @error('codigo')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="segundo_nombre" class="text-secondary">Segundo Nombre*</label>
-                                    <input type="text" name="segundo_nombre" class="form-control{{ $errors->has('segundo_nombre') ? ' is-invalid' : '' }}" maxlength="50" value="{{ old('segundo_nombre') }}" tabindex="3">
+                                    <input type="text" name="segundo_nombre" class="form-control{{ $errors->has('segundo_nombre') ? ' is-invalid' : '' }}" maxlength="50" value="{{ old('segundo_nombre', $empleado->segundo_nombre) }}" tabindex="3">
                                     @error('segundo_nombre')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="segundo_apellido" class="text-secondary">Segundo Apellido*</label>
-                                    <input type="text" name="segundo_apellido" class="form-control{{ $errors->has('segundo_apellido') ? ' is-invalid' : '' }}" maxlength="50" value="{{ old('segundo_apellido') }}" tabindex="5">
+                                    <input type="text" name="segundo_apellido" class="form-control{{ $errors->has('segundo_apellido') ? ' is-invalid' : '' }}" maxlength="50" value="{{ old('segundo_apellido', $empleado->segundo_apellido) }}" tabindex="5">
                                     @error('segundo_apellido')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="fecha_nacimiento" class="text-secondary">Fecha de nacimiento*</label>
-                                    <input type="date" name="fecha_nacimiento" class="form-control{{ $errors->has('fecha_nacimiento') ? ' is-invalid' : '' }}" value="{{ old('fecha_nacimiento') }}" tabindex="7">
+                                    <input type="date" name="fecha_nacimiento" class="form-control{{ $errors->has('fecha_nacimiento') ? ' is-invalid' : '' }}" value="{{ old('fecha_nacimiento', $empleado->fecha_nacimiento) }}" tabindex="7">
                                     @error('fecha_nacimiento')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -51,7 +52,7 @@
                                     <select name="departamento" class="form-control{{ $errors->has('departamento') ? ' is-invalid' : '' }}" tabindex="9">
                                         <option value="" {{ old('departamento') == '' ? 'selected' : '' }}>Seleccione el departamento</option>
                                         @foreach($departamentos as $departamento)
-                                            <option value="{{ $departamento->id }}" {{ old('departamento') == $departamento->id ? 'selected' : '' }}>
+                                            <option value="{{ $departamento->id }}" {{ old('departamento', $empleado->municipio->id_departamento) == $departamento->id ? 'selected' : '' }}>
                                                 {{ $departamento->nombre }}
                                             </option>
                                         @endforeach
@@ -62,7 +63,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="telefono" class="text-secondary">Telefono*</label>
-                                    <input type="text" name="telefono" class="form-control{{ $errors->has('telefono') ? ' is-invalid' : '' }}" maxlength="9" value="{{ old('telefono') }}" tabindex="11">
+                                    <input type="text" name="telefono" class="form-control{{ $errors->has('telefono') ? ' is-invalid' : '' }}" maxlength="9" value="{{old('telefono') ??  $empleado->telefono}}" tabindex="11">
                                     @error('telefono')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -72,7 +73,7 @@
                                     <select name="estado_civil" class="form-control{{ $errors->has('estado_civil') ? ' is-invalid' : '' }}" tabindex="13">
                                         <option value="" {{ old('estado_civil') == '' ? 'selected' : '' }}>Seleccione el estado civil</option>
                                         @foreach($estado_civil as $clave => $valor)
-                                            <option value="{{ $clave }}" {{ old('estado_civil') == $clave ? 'selected' : '' }}>{{ $valor }}</option>
+                                            <option value="{{ $clave }}" {{ old('estado_civil', $empleado->estado_civil) == $clave ? 'selected' : '' }}>{{ $valor }}</option>
                                         @endforeach
                                     </select>
                                     @error('estado_civil')
@@ -84,28 +85,28 @@
                                 <!-- Columna derecha -->
                                 <div class="form-group">
                                     <label for="primer_nombre" class="text-secondary">Primer Nombre*</label>
-                                    <input type="text" name="primer_nombre" class="form-control{{ $errors->has('primer_nombre') ? ' is-invalid' : '' }}" maxlength="255" value="{{ old('primer_nombre') }}" tabindex="2">
+                                    <input type="text" name="primer_nombre" class="form-control{{ $errors->has('primer_nombre') ? ' is-invalid' : '' }}" maxlength="255" value="{{ old('primer_nombre', $empleado->primer_nombre) }}" tabindex="2">
                                     @error('primer_nombre')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="primer_apellido" class="text-secondary">Primer apellido*</label>
-                                    <input type="text" name="primer_apellido" class="form-control{{ $errors->has('primer_apellido') ? ' is-invalid' : '' }}" maxlength="255" value="{{ old('primer_apellido') }}" tabindex="4">
+                                    <input type="text" name="primer_apellido" class="form-control{{ $errors->has('primer_apellido') ? ' is-invalid' : '' }}" maxlength="255" value="{{ old('primer_apellido', $empleado->primer_apellido) }}" tabindex="4">
                                     @error('primer_apellido')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="apellido_casada" class="text-secondary">Apellido de casada</label>
-                                    <input type="text" name="apellido_casada" class="form-control{{ $errors->has('') ? ' is-invalid' : '' }}" maxlength="255" value="{{ old('apellido_casada') }}" tabindex="6">
+                                    <input type="text" name="apellido_casada" class="form-control{{ $errors->has('') ? ' is-invalid' : '' }}" maxlength="255" value="{{ old('apellido_casada', $empleado->apellido_casada) }}" tabindex="6">
                                     @error('apellido_casada')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="direccion" class="text-secondary">Dirección*</label>
-                                    <input type="text" name="direccion" class="form-control{{ $errors->has('direccion') ? ' is-invalid' : '' }}" maxlength="255" value="{{ old('direccion') }}" tabindex="8">
+                                    <input type="text" name="direccion" class="form-control{{ $errors->has('direccion') ? ' is-invalid' : '' }}" maxlength="255" value="{{ old('direccion', $empleado->direccion) }}" tabindex="8">
                                     @error('direccion')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -124,7 +125,7 @@
                                     <select name="nacionalidad" class="form-control{{ $errors->has('nacionalidad') ? ' is-invalid' : '' }}" tabindex="12">
                                         <option value="" {{ old('nacionalidad') == '' ? 'selected' : '' }}>Seleccione la nacionalidad</option>
                                         @foreach($nacionalidades as $clave => $valor)
-                                            <option value="{{ $clave }}" {{ old('nacionalidad') == $clave ? 'selected' : '' }}>{{ $valor }}</option>
+                                            <option value="{{ $clave }}" {{ old('nacionalidad', $empleado->nacionalidad) == $clave ? 'selected' : '' }}>{{ $valor }}</option>
                                         @endforeach
                                     </select>
                                     @error('nacionalidad')
@@ -136,7 +137,7 @@
                                     <select name="sexo" class="form-control{{ $errors->has('sexo') ? ' is-invalid' : '' }}" tabindex="14">
                                         <option value="" {{ old('sexo') == '' ? 'selected' : '' }}>Seleccione el sexo</option>
                                         @foreach($sexo as $clave => $valor)
-                                            <option value="{{ $clave }}" {{ old('sexo') == $clave ? 'selected' : '' }}>{{ $valor }}</option>
+                                            <option value="{{ $clave }}" {{ old('sexo', $empleado->sexo) == $clave ? 'selected' : '' }}>{{ $valor }}</option>
                                         @endforeach
                                     </select>
                                     @error('sexo')
@@ -207,7 +208,7 @@
                                     <select name="banco" class="form-control{{ $errors->has('banco') ? ' is-invalid' : '' }}" tabindex="21">
                                         <option value="" {{ old('banco') == '' ? 'selected' : '' }}>Seleccione el banco</option>
                                         @foreach($bancos as $banco)
-                                            <option value="{{ $banco->id }}" {{ old('banco') == $banco->id ? 'selected' : '' }}>
+                                            <option value="{{ $banco->id }}" {{ old('banco', $empleado->id_banco) == $banco->id ? 'selected' : '' }}>
                                                 {{ $banco->nombre }}
                                             </option>
                                         @endforeach
@@ -218,7 +219,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="numero_cuenta" class="text-secondary">Número de Cuenta*</label>
-                                    <input type="text" name="numero_cuenta" class="form-control{{ $errors->has('numero_cuenta') ? ' is-invalid' : '' }}" maxlength="50" value="{{ old('numero_cuenta') }}" tabindex="23">
+                                    <input type="text" name="numero_cuenta" class="form-control{{ $errors->has('numero_cuenta') ? ' is-invalid' : '' }}" maxlength="50" value="{{ old('numero_cuenta', $empleado->numero_cuenta) }}" tabindex="23">
                                     @error('numero_cuenta')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -231,63 +232,10 @@
                                     <select name="tipo_cuenta" class="form-control{{ $errors->has('tipo_cuenta') ? ' is-invalid' : '' }}" tabindex="22">
                                         <option value="" {{ old('tipo_cuenta') == '' ? 'selected' : '' }}>Seleccione el tipo de cuenta</option>
                                         @foreach($tipos_cuentas as $clave => $valor)
-                                            <option value="{{ $clave }}" {{ old('tipo_cuenta') == $clave ? 'selected' : '' }}>{{ $valor }}</option>
+                                            <option value="{{ $clave }}" {{ old('tipo_cuenta', $empleado->tipo_cuenta) == $clave ? 'selected' : '' }}>{{ $valor }}</option>
                                         @endforeach
                                     </select>
                                     @error('tipo_cuenta')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 mb-3">
-                                <h5 class="text-secondary">Información del Puesto</h5>
-                            </div>
-                            <div class="col-lg-6 col-md-12 mb-3">
-                                <!-- Columna izquierda -->
-                                <div class="form-group">
-                                    <label for="puesto" class="text-secondary">Puesto*</label>
-                                    <select name="puesto" class="form-control{{ $errors->has('puesto') ? ' is-invalid' : '' }}" tabindex="24">
-                                        <option value="" {{ old('puesto') == '' ? 'selected' : '' }}>Seleccione el puesto</option>
-                                        @foreach($puestos as $puesto)
-                                            <option value="{{ $puesto->id }}" {{ old('puesto') == $puesto->id ? 'selected' : '' }}>
-                                                {{ $puesto->nombre }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('puesto')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="jornada" class="text-secondary">Jornada*</label>
-                                    <select name="jornada" class="form-control{{ $errors->has('jornada') ? ' is-invalid' : '' }}" tabindex="26">
-                                        <option value="" {{ old('jornada') == '' ? 'selected' : '' }}>Seleccione la jornada</option>
-                                        @foreach($jornadas as $jornada)
-                                            <option value="{{ $jornada->id }}" {{ old('jornada') == $jornada->id ? 'selected' : '' }}>
-                                                {{ $jornada->codigo }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('jornada')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-12 mb-3">
-                                <!-- Columna derecha -->
-                                <div class="form-group">
-                                    <label for="salario" class="text-secondary">Salario*</label>
-                                    <input type="number" name="salario" class="form-control{{ $errors->has('salario') ? ' is-invalid' : '' }}" value="{{ old('salario') }}" tabindex="25">
-                                    @error('salario')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="fecha_inicio" class="text-secondary">Fecha de Ingreso*</label>
-                                    <input type="date" name="fecha_inicio" class="form-control{{ $errors->has('fecha_inicio') ? ' is-invalid' : '' }}" value="{{ old('fecha_inicio') }}" tabindex="27">
-                                    @error('fecha_inicio')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -315,7 +263,7 @@
 @section('js')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
 <script>
-    var municipio_id = "{{ old('municipio') }}";
+    var municipio_id = "{{ old('municipio', $empleado->id_municipio) }}";
     $(document).ready(function () {
         var phoneInput = $('input[name="telefono"]');
         phoneInput.inputmask('9999-9999');
@@ -409,25 +357,6 @@
             municipioSelect.empty();
             municipioSelect.append('<option value="">Seleccione el municipio</option>');
             municipioSelect.val('');
-        }
-    });
-
-    $('select[name="puesto"]').change(function () {
-        var puesto_id = $(this).val();
-        if (puesto_id) {
-            $.ajax({
-                url: "{{ route('get-salario-puesto') }}",
-                type: "GET",
-                dataType: "json",
-                data: {puesto_id: puesto_id},
-                success: function (data) {
-                    var salarioInput = $('input[name="salario"]');
-                    salarioInput.val(data);
-                }
-            });
-        } else {
-            var salarioInput = $('input[name="salario"]');
-            salarioInput.val('');
         }
     });
 
