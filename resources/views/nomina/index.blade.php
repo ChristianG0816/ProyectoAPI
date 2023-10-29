@@ -31,10 +31,16 @@
                     <tbody>
                         @foreach($empleados as $empleado)
                             <td>{{ $empleado->empleado->codigo }}</td>
-                            <td>{{ $empleado->empleado->primer_nombre }} {{ $empleado->empleado->primer_apellido }} </td>
+                            <td>{{ $empleado->empleado->primer_nombre }} {{ $empleado->empleado->segundo_nombre }} {{ $empleado->empleado->primer_apellido }} {{ $empleado->empleado->segundo_apellido }}</td>
                             <td>{{ $empleado->puesto->nombre}}</td>
                             <td>{{ $empleado->puesto->unidad_organizativa->nombre}}</td>
-                            <td></td>
+                            <td>
+                              <a class="btn btn-outline-info btn-sm" href="#">Mostrar</a>
+                              <a class="btn btn-outline-info btn-sm ml-1" href="{{ route('nomina.edit', ['nomina' => $empleado->empleado->id]) }}">Editar</a>
+                              <a class="btn btn-outline-info btn-sm ml-1" href="#">Modificar Puesto</a>
+                              <a class="btn btn-outline-info btn-sm ml-1" href="#">Modificar Salario</a>
+                              <a class="btn btn-outline-danger btn-sm ml-1" href="#">Eliminar</a>
+                            </td>
                         @endforeach
                     </tbody>
                 </table>
