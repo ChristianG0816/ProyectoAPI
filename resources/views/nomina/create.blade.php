@@ -72,7 +72,7 @@
                                     <select name="estado_civil" class="form-control{{ $errors->has('estado_civil') ? ' is-invalid' : '' }}" tabindex="13">
                                         <option value="" {{ old('estado_civil') == '' ? 'selected' : '' }}>Seleccione el estado civil</option>
                                         @foreach($estado_civil as $clave => $valor)
-                                            <option value="{{ $clave }}" {{ old('estado_civil') == $clave ? 'selected' : '' }}>{{ $valor }}</option>
+                                            <option value="{{ $valor }}" {{ old('estado_civil') == $valor ? 'selected' : '' }}>{{ $valor }}</option>
                                         @endforeach
                                     </select>
                                     @error('estado_civil')
@@ -124,7 +124,7 @@
                                     <select name="nacionalidad" class="form-control{{ $errors->has('nacionalidad') ? ' is-invalid' : '' }}" tabindex="12">
                                         <option value="" {{ old('nacionalidad') == '' ? 'selected' : '' }}>Seleccione la nacionalidad</option>
                                         @foreach($nacionalidades as $clave => $valor)
-                                            <option value="{{ $clave }}" {{ old('nacionalidad') == $clave ? 'selected' : '' }}>{{ $valor }}</option>
+                                            <option value="{{ $valor }}" {{ old('nacionalidad') == $valor ? 'selected' : '' }}>{{ $valor }}</option>
                                         @endforeach
                                     </select>
                                     @error('nacionalidad')
@@ -136,7 +136,7 @@
                                     <select name="sexo" class="form-control{{ $errors->has('sexo') ? ' is-invalid' : '' }}" tabindex="14">
                                         <option value="" {{ old('sexo') == '' ? 'selected' : '' }}>Seleccione el sexo</option>
                                         @foreach($sexo as $clave => $valor)
-                                            <option value="{{ $clave }}" {{ old('sexo') == $clave ? 'selected' : '' }}>{{ $valor }}</option>
+                                            <option value="{{ $valor }}" {{ old('sexo') == $valor ? 'selected' : '' }}>{{ $valor }}</option>
                                         @endforeach
                                     </select>
                                     @error('sexo')
@@ -231,7 +231,7 @@
                                     <select name="tipo_cuenta" class="form-control{{ $errors->has('tipo_cuenta') ? ' is-invalid' : '' }}" tabindex="22">
                                         <option value="" {{ old('tipo_cuenta') == '' ? 'selected' : '' }}>Seleccione el tipo de cuenta</option>
                                         @foreach($tipos_cuentas as $clave => $valor)
-                                            <option value="{{ $clave }}" {{ old('tipo_cuenta') == $clave ? 'selected' : '' }}>{{ $valor }}</option>
+                                            <option value="{{ $valor }}" {{ old('tipo_cuenta') == $valor ? 'selected' : '' }}>{{ $valor }}</option>
                                         @endforeach
                                     </select>
                                     @error('tipo_cuenta')
