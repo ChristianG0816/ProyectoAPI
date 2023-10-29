@@ -23,13 +23,21 @@ class NominaController extends Controller
 
     public function create()
     {
-        $nacionalidades = ['us' => 'Estados Unidos', 'ca' => 'Canadá', 'mx' => 'México', 'es' => 'España', 'ar' => 'Argentina', 'co' => 'Colombia', 'pe' => 'Perú', 've' => 'Venezuela', 'cl' => 'Chile', 'ec' => 'Ecuador', 'cu' => 'Cuba', 'bo' => 'Bolivia', 'gt' => 'Guatemala', 'hn' => 'Honduras', 'py' => 'Paraguay', 'sv' => 'El Salvador', 'ni' => 'Nicaragua', 'pr' => 'Puerto Rico', 'uy' => 'Uruguay', 'pa' => 'Panamá', 'cr' => 'Costa Rica', 'do' => 'República Dominicana', 'gy' => 'Guyana', 'ht' => 'Haití', 'bz' => 'Belice', 'fr' => 'Francia', 'it' => 'Italia', 'de' => 'Alemania', 'uk' => 'Reino Unido', 'jp' => 'Japón', 'cn' => 'China', 'in' => 'India', 'kr' => 'Corea del Sur', 'ng' => 'Nigeria', 'eg' => 'Egipto', 'za' => 'Sudáfrica', 'au' => 'Australia', 'nz' => 'Nueva Zelanda'];
+        $nacionalidades = [
+            'Estados Unidos', 'Canadá', 'México', 'España', 'Argentina', 'Colombia', 'Perú', 'Venezuela', 'Chile', 'Ecuador', 'Cuba', 'Bolivia', 'Guatemala', 'Honduras', 'Paraguay', 'El Salvador', 'Nicaragua', 'Puerto Rico', 'Uruguay', 'Panamá', 'Costa Rica', 'República Dominicana', 'Guyana', 'Haití', 'Belice', 'Francia', 'Italia', 'Alemania', 'Reino Unido', 'Japón', 'China', 'India', 'Corea del Sur', 'Nigeria', 'Egipto', 'Sudáfrica', 'Australia', 'Nueva Zelanda'
+        ];
         asort($nacionalidades);
-        $estado_civil = ['soltero' => 'Soltero/a', 'casado' => 'Casado/a', 'divorciado' => 'Divorciado/a', 'viudo' => 'Viudo/a', 'otro' => 'Otro'];
-        $sexo = ['masculino' => 'Masculino', 'femenino' => 'Femenino'];
+        $estado_civil = [
+            'Soltero/a',
+            'Casado/a',
+            'Divorciado/a',
+            'Viudo/a',
+            'Otro'
+        ];        
+        $sexo = ['Masculino', 'Femenino'];
+        $tipos_cuentas = ['Ahorros', 'Corriente'];
         $departamentos = Departamento::all();
         $bancos = Banco::all();
-        $tipos_cuentas = ['ahorros' => 'Ahorros', 'corriente' => 'Corriente'];
         $tipos_documentos = TipoDocumento::all();
         $puestos = Puesto::all();
         $jornadas = Jornada::all();
@@ -165,17 +173,39 @@ class NominaController extends Controller
     public function edit($id)
     {
         $empleado = Empleado::find($id);
-        $nacionalidades = ['us' => 'Estados Unidos', 'ca' => 'Canadá', 'mx' => 'México', 'es' => 'España', 'ar' => 'Argentina', 'co' => 'Colombia', 'pe' => 'Perú', 've' => 'Venezuela', 'cl' => 'Chile', 'ec' => 'Ecuador', 'cu' => 'Cuba', 'bo' => 'Bolivia', 'gt' => 'Guatemala', 'hn' => 'Honduras', 'py' => 'Paraguay', 'sv' => 'El Salvador', 'ni' => 'Nicaragua', 'pr' => 'Puerto Rico', 'uy' => 'Uruguay', 'pa' => 'Panamá', 'cr' => 'Costa Rica', 'do' => 'República Dominicana', 'gy' => 'Guyana', 'ht' => 'Haití', 'bz' => 'Belice', 'fr' => 'Francia', 'it' => 'Italia', 'de' => 'Alemania', 'uk' => 'Reino Unido', 'jp' => 'Japón', 'cn' => 'China', 'in' => 'India', 'kr' => 'Corea del Sur', 'ng' => 'Nigeria', 'eg' => 'Egipto', 'za' => 'Sudáfrica', 'au' => 'Australia', 'nz' => 'Nueva Zelanda'];
+        $empleadoPuesto = EmpleadoPuesto::where('id_empleado', $id)->where('actual', true)->first();
+        $nacionalidades = [
+            'Estados Unidos', 'Canadá', 'México', 'España', 'Argentina', 'Colombia', 'Perú', 'Venezuela', 'Chile', 'Ecuador', 'Cuba', 'Bolivia', 'Guatemala', 'Honduras', 'Paraguay', 'El Salvador', 'Nicaragua', 'Puerto Rico', 'Uruguay', 'Panamá', 'Costa Rica', 'República Dominicana', 'Guyana', 'Haití', 'Belice', 'Francia', 'Italia', 'Alemania', 'Reino Unido', 'Japón', 'China', 'India', 'Corea del Sur', 'Nigeria', 'Egipto', 'Sudáfrica', 'Australia', 'Nueva Zelanda'
+        ];
         asort($nacionalidades);
-        $estado_civil = ['soltero' => 'Soltero/a', 'casado' => 'Casado/a', 'divorciado' => 'Divorciado/a', 'viudo' => 'Viudo/a', 'otro' => 'Otro'];
-        $sexo = ['masculino' => 'Masculino', 'femenino' => 'Femenino'];
+        $estado_civil = [
+            'Soltero/a',
+            'Casado/a',
+            'Divorciado/a',
+            'Viudo/a',
+            'Otro'
+        ];        
+        $sexo = ['Masculino', 'Femenino'];
+        $tipos_cuentas = ['Ahorros', 'Corriente'];
         $departamentos = Departamento::all();
         $bancos = Banco::all();
-        $tipos_cuentas = ['ahorros' => 'Ahorros', 'corriente' => 'Corriente'];
+        
         $tipos_documentos = TipoDocumento::all();
         $puestos = Puesto::all();
         $jornadas = Jornada::all();
-        return view('nomina.edit', compact('empleado', 'nacionalidades', 'estado_civil', 'sexo', 'departamentos', 'bancos', 'tipos_cuentas', 'tipos_documentos', 'puestos', 'jornadas'));
+        //Obtener documento dui del empleado
+        $dui = DocumentoEmpleado::where('id_empleado', $id)->where('id_tipo_documento', 1)->pluck('numero')->first();
+        //Obtener documento nit del empleado
+        $nit = DocumentoEmpleado::where('id_empleado', $id)->where('id_tipo_documento', 2)->pluck('numero')->first();
+        //Obtener documento nup del empleado
+        $nup = DocumentoEmpleado::where('id_empleado', $id)->where('id_tipo_documento', 3)->pluck('numero')->first();
+        //Obtener documento isss del empleado
+        $isss = DocumentoEmpleado::where('id_empleado', $id)->where('id_tipo_documento', 4)->pluck('numero')->first();
+        //Obtener documento pasaporte del empleado
+        $pasaporte = DocumentoEmpleado::where('id_empleado', $id)->where('id_tipo_documento', 5)->pluck('numero')->first();
+        //Obtener documento residencia del empleado
+        $residencia = DocumentoEmpleado::where('id_empleado', $id)->where('id_tipo_documento', 6)->pluck('numero')->first();
+        return view('nomina.edit', compact('empleado', 'nacionalidades', 'estado_civil', 'sexo', 'departamentos', 'bancos', 'tipos_cuentas', 'tipos_documentos', 'puestos', 'jornadas', 'dui', 'nit', 'nup', 'isss', 'pasaporte', 'residencia', 'empleadoPuesto'));
     }
 
     public function update(Request $request, $id)
@@ -203,6 +233,7 @@ class NominaController extends Controller
             'nit' => 'required',
             'nup' => 'required',
             'isss' => 'required',
+            'jornada'  => 'required',
         ],
         [
             'fecha_nacimiento.after_or_equal' => 'La fecha de nacimiento debe ser igual o posterior a la fecha mínima.',
@@ -231,54 +262,120 @@ class NominaController extends Controller
                 'apellido_casada' => $request->apellido_casada,
             ]);
         }
-        DocumentoEmpleado::where('id_empleado', $id)->delete();
         if ($request->has('dui')) {
-            DocumentoEmpleado::create([
+            DocumentoEmpleado::where('id_empleado', $id)->where('id_tipo_documento', 1)->update([
                 'numero' => $request->dui,
-                'id_tipo_documento' => 1,
-                'id_empleado' => $id,
             ]);
         }
         if ($request->has('nit')) {
-            DocumentoEmpleado::create([
+            DocumentoEmpleado::where('id_empleado', $id)->where('id_tipo_documento', 2)->update([
                 'numero' => $request->nit,
-                'id_tipo_documento' => 2,
-                'id_empleado' => $id,
             ]);
         }
         if ($request->has('nup')) {
-            DocumentoEmpleado::create([
+            DocumentoEmpleado::where('id_empleado', $id)->where('id_tipo_documento', 3)->update([
                 'numero' => $request->nup,
-                'id_tipo_documento' => 3,
-                'id_empleado' => $id,
             ]);
         }
         if ($request->has('isss')) {
-            DocumentoEmpleado::create([
+            DocumentoEmpleado::where('id_empleado', $id)->where('id_tipo_documento', 4)->update([
                 'numero' => $request->isss,
-                'id_tipo_documento' => 4,
-                'id_empleado' => $id,
             ]);
         }
         if ($request->has('pasaporte') && $request->pasaporte != null) {
-            DocumentoEmpleado::create([
-                'numero' => $request->pasaporte,
-                'id_tipo_documento' => 5,
-                'id_empleado' => $id,
-            ]);
+            //verificar si el documento de pasaporte existe
+            $pasaporte = DocumentoEmpleado::where('id_empleado', $id)->where('id_tipo_documento', 5)->pluck('numero')->first();
+            if ($pasaporte == null) {
+                DocumentoEmpleado::create([
+                    'numero' => $request->pasaporte,
+                    'id_tipo_documento' => 5,
+                    'id_empleado' => $id,
+                ]);
+            } else {
+                DocumentoEmpleado::where('id_empleado', $id)->where('id_tipo_documento', 5)->update([
+                    'numero' => $request->pasaporte,
+                ]);
+            }
         }
         if ($request->has('residencia') && $request->residencia != null) {
-            DocumentoEmpleado::create([
-                'numero' => $request->residencia,
-                'id_tipo_documento' => 6,
-                'id_empleado' => $id,
-            ]);
+            //verificar si el documento de residencia existe
+            $residencia = DocumentoEmpleado::where('id_empleado', $id)->where('id_tipo_documento', 6)->pluck('numero')->first();
+            if ($residencia == null) {
+                DocumentoEmpleado::create([
+                    'numero' => $request->residencia,
+                    'id_tipo_documento' => 6,
+                    'id_empleado' => $id,
+                ]);
+            } else {
+                DocumentoEmpleado::where('id_empleado', $id)->where('id_tipo_documento', 6)->update([
+                    'numero' => $request->residencia,
+                ]);
+            }
         }
+        EmpleadoPuesto::where('id_empleado', $id)->where('actual', true)->update([
+            'id_jornada' => $request->jornada,
+        ]);
         return redirect()->route('nomina.index')->with('success', 'Empleado actualizado exitosamente.');
     }
 
     public function show($id)
     {
-        //
+        $empleadoPuesto = EmpleadoPuesto::where('id', $id)->first();
+        $dui = DocumentoEmpleado::where('id_empleado', $empleadoPuesto->empleado->id)->where('id_tipo_documento', 1)->pluck('numero')->first();
+        $nit = DocumentoEmpleado::where('id_empleado', $empleadoPuesto->empleado->id)->where('id_tipo_documento', 2)->pluck('numero')->first();
+        $nup = DocumentoEmpleado::where('id_empleado', $empleadoPuesto->empleado->id)->where('id_tipo_documento', 3)->pluck('numero')->first();
+        $isss = DocumentoEmpleado::where('id_empleado', $empleadoPuesto->empleado->id)->where('id_tipo_documento', 4)->pluck('numero')->first();
+        $pasaporte = DocumentoEmpleado::where('id_empleado', $empleadoPuesto->empleado->id)->where('id_tipo_documento', 5)->pluck('numero')->first();
+        $residencia = DocumentoEmpleado::where('id_empleado', $empleadoPuesto->empleado->id)->where('id_tipo_documento', 6)->pluck('numero')->first();
+        return view('nomina.show', compact('empleadoPuesto', 'dui', 'nit', 'nup', 'isss', 'pasaporte', 'residencia'));
+    }
+
+    public function editPuesto($id)
+    {
+        $empleadoPuesto = EmpleadoPuesto::where('id', $id)->first();
+        $puestos = Puesto::all();
+        $jornadas = Jornada::all();
+        return view('nomina.editPuesto', compact('empleadoPuesto', 'puestos', 'jornadas'));
+    }
+
+    public function updatePuesto(Request $request, $id)
+    {
+        $empleadoPuesto = EmpleadoPuesto::where('id', $id)->first();
+        $fecha_minima = '1900-01-01'; // Cambia esta fecha según tus necesidades
+        $fecha_maxima = date('Y-m-d'); // Fecha actual
+        $salarioInicial = 0;
+        try {
+            //guardar solo el valor del salario en la variable
+            $salarioInicial = Puesto::where('id', $request->puesto)->pluck('salario_mensual_base')->first();
+            if ($salarioInicial == null) {
+                $salarioInicial = 0;
+            }
+        } catch (\Throwable $th) {
+            $salarioInicial = 0;
+        }
+        $request->validate([
+            'puesto' => 'required',
+            'jornada' => 'required',
+            'salario' => 'required|numeric|min:' . $salarioInicial,
+            'fecha_inicio' => 'required|date|after_or_equal:' . $fecha_minima,
+        ],
+        [
+            'fecha_inicio.after_or_equal' => 'La fecha de inicio debe ser igual o posterior a la fecha mínima.',
+            'salario.min' => 'El salario no puede ser menor que el salario base del puesto.',
+        ]);
+        EmpleadoPuesto::where('id_empleado', $empleadoPuesto->empleado->id)->where('actual', true)->update([
+            'actual' => false,
+            'fecha_fin' => $request->fecha_inicio,
+        ]);
+        EmpleadoPuesto::create([
+            'id_empleado' => $empleadoPuesto->empleado->id,
+            'id_puesto' => $request->puesto,
+            'id_jornada' => $request->jornada,
+            'salario_mensual' => $request->salario,
+            'fecha_inicio' => $request->fecha_inicio,
+            'actual' => true,
+            'cambio_puesto' => true,
+        ]);
+        return redirect()->route('nomina.index')->with('success', 'Puesto actualizado exitosamente.');
     }
 }
