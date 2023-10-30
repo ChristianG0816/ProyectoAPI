@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NominaController;
 use App\Http\Controllers\MunicipioController;
 use App\Http\Controllers\PuestoController;
+use App\Http\Controllers\ReporteContratacionesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,4 @@ Route::get('nomina/editPuesto/{id}', [NominaController::class, 'editPuesto'])->n
 Route::patch('nomina/updatePuesto/{id}', [NominaController::class, 'updatePuesto'])->name('nomina.updatePuesto');
 Route::get('get-municipios', [MunicipioController::class, 'getMunicipios'])->name('get-municipios');
 Route::get('get-salario-puesto', [PuestoController::class, 'getSalarioPuesto'])->name('get-salario-puesto');
+Route::get('reporte-contrataciones/{filtro?}', [ReporteContratacionesController::class, 'index'])->name('reporte-contrataciones');
