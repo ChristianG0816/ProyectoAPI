@@ -323,6 +323,11 @@ return [
             'url'         => 'nomina',
             'icon'        => 'far fa-fw fa-file',
         ],
+        [
+            'text'        => 'Contrataciones y Ascensos', 
+            'url'         => 'reporte-contrataciones',
+            'icon'        => 'far fa-fw fa-file',
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
