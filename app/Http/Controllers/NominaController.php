@@ -321,13 +321,17 @@ class NominaController extends Controller
     public function show($id)
     {
         $empleadoPuesto = EmpleadoPuesto::where('id', $id)->first();
+        
+        //Obtener el empleado para deducciones y bonificaciones
+        $empleado = Empleado::where('id', $id)->first();
+
         $dui = DocumentoEmpleado::where('id_empleado', $empleadoPuesto->empleado->id)->where('id_tipo_documento', 1)->pluck('numero')->first();
         $nit = DocumentoEmpleado::where('id_empleado', $empleadoPuesto->empleado->id)->where('id_tipo_documento', 2)->pluck('numero')->first();
         $nup = DocumentoEmpleado::where('id_empleado', $empleadoPuesto->empleado->id)->where('id_tipo_documento', 3)->pluck('numero')->first();
         $isss = DocumentoEmpleado::where('id_empleado', $empleadoPuesto->empleado->id)->where('id_tipo_documento', 4)->pluck('numero')->first();
         $pasaporte = DocumentoEmpleado::where('id_empleado', $empleadoPuesto->empleado->id)->where('id_tipo_documento', 5)->pluck('numero')->first();
         $residencia = DocumentoEmpleado::where('id_empleado', $empleadoPuesto->empleado->id)->where('id_tipo_documento', 6)->pluck('numero')->first();
-        return view('nomina.show', compact('empleadoPuesto', 'dui', 'nit', 'nup', 'isss', 'pasaporte', 'residencia'));
+        return view('nomina.show', compact('empleadoPuesto','empleado', 'dui', 'nit', 'nup', 'isss', 'pasaporte', 'residencia'));
     }
 
     public function editPuesto($id)

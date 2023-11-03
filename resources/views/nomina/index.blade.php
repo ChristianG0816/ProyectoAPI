@@ -25,7 +25,7 @@
                             <th>Nombre</th>
                             <th>Puesto</th>
                             <th>Unidad</th>
-                            <th>Acciones</th>
+                            <th>Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
