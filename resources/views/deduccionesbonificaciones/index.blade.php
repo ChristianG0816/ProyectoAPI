@@ -42,7 +42,8 @@
                                         <td>{{ $movimiento->tipoMovimientoNomina->nombre }}</td>
                                         <td>{{ $movimiento->observacion }}</td>
                                         <td>
-                                            <a class="btn btn-outline-info btn-sm ml-1" href="#">Editar</a>
+                                            <a class="btn btn-outline-info btn-sm ml-1" href="{{ route('deduccionesbonificaciones.edit', 
+                                            ['id_empleado' => $empleado->id, 'id_movimiento' => $movimiento->id]) }}">Editar</a>
                                             <a class="btn btn-outline-danger btn-sm ml-1" href="#">Eliminar</a>
                                         </td>
                                     </tr>

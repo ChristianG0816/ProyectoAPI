@@ -29,6 +29,8 @@ Route::resource("nomina", NominaController::class)->names('nomina');
 Route::get('deduccionesbonificaciones/{id_empleado}', [DeduccionesBonificacionesController::class, 'show'])->name('deduccionesbonificaciones.show');
 Route::get('deduccionesbonificaciones/{id_empleado}/create', [DeduccionesBonificacionesController::class, 'create'])->name('deduccionesbonificaciones.create');
 Route::post('deduccionesbonificaciones', [DeduccionesBonificacionesController::class, 'store'])->name('deduccionesbonificaciones.store');
+Route::get('deduccionesbonificaciones/{id_empleado}/edit/{id_movimiento}', [DeduccionesBonificacionesController::class, 'edit'])->name('deduccionesbonificaciones.edit');
+Route::post('deduccionesbonificaciones/{id_empleado}/{id_movimiento}', [DeduccionesBonificacionesController::class, 'update'])->name('deduccionesbonificaciones.update');
 
 
 
