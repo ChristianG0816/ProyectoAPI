@@ -323,9 +323,18 @@ return [
             'url'         => 'nomina',
             'icon'        => 'far fa-fw fa-file',
         ],
+
+        ['header' => 'Reportes',],
+
         [
             'text'        => 'Contrataciones y Ascensos', 
             'url'         => 'reporte-contrataciones',
+            'icon'        => 'far fa-fw fa-file',
+        ],
+
+        [
+            'text'        => 'Deducciones y Bonificaciones de Empleados', 
+            'url'         => 'reporte-movimientos',
             'icon'        => 'far fa-fw fa-file',
         ],
         

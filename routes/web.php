@@ -8,6 +8,7 @@ use App\Http\Controllers\ReporteContratacionesController;
 use App\Http\Controllers\DeduccionesBonificacionesController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\ReporteMovimientosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,5 +48,6 @@ Route::patch('nomina/updatePuesto/{id}', [NominaController::class, 'updatePuesto
 Route::get('get-municipios', [MunicipioController::class, 'getMunicipios'])->name('get-municipios');
 Route::get('get-salario-puesto', [PuestoController::class, 'getSalarioPuesto'])->name('get-salario-puesto');
 Route::get('reporte-contrataciones/{filtro?}', [ReporteContratacionesController::class, 'index'])->name('reporte-contrataciones');
+Route::get('reporte-movimientos/{filtro?}', [ReporteMovimientosController::class, 'index'])->name('reporte-movimientos');
 
 });
