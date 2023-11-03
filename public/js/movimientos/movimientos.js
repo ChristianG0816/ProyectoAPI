@@ -3,7 +3,7 @@ toastr.options = {
     "progressBar": true
 };
 $(document).ready(function() {
-    var table = $('#tabla-nomina').DataTable({
+    var table = $('#tabla-deduccion-bonificacion').DataTable({
         language: {
             "sProcessing": "Procesando...",
             "sLengthMenu": "Mostrar _MENU_ registros",
@@ -40,11 +40,13 @@ $(document).ready(function() {
             return: true
         },
         columnDefs: [
-            { width: '10%', targets: 0 },
-            { width: '25%', targets: 1 },
+            { width: '20%', targets: 0 },
+            { width: '10%', targets: 1 },
             { width: '15%', targets: 2 },
-            { width: '15%', targets: 3 },
-            { width: '30%', targets: 4 },
+            { width: '10%', targets: 3 },
+            { width: '15%', targets: 4 },
+            { width: '20%', targets: 5 },
+            { width: '10%', targets: 6 },
         ],
         lengthMenu: [5, 10, 25, 100], 
         pageLength: 5, 
