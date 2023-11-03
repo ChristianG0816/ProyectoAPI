@@ -18,6 +18,15 @@
                         <div class="col-lg-6 col-md-12 mb-3">
 
                             <!-- Columna izquierda -->
+
+                            <div class="form-group">
+                                <label for="fecha_movimiento" class="text-secondary">Fecha*</label>
+                                <input type="date" name="fecha_movimiento" class="form-control{{ $errors->has('fecha_movimiento') ? ' is-invalid' : '' }}" value="{{ $movimientoNomina->fecha_movimiento }}">
+                                @error('fecha_movimiento')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
                             <div class="form-group">
                                 <label for="concepto" class="text-secondary">Descripción del concepto*</label>
                                 <input type="text" name="concepto" class="form-control{{ $errors->has('concepto') ? ' is-invalid' : '' }}" value="{{ $movimientoNomina->concepto }}">

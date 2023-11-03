@@ -29,6 +29,7 @@ public function store(Request $request)
         'valor_pagar' => 'required|numeric',
         'accion' => 'required',
         'observacion' => 'required',
+        'fecha_movimiento' => 'required',
     ]);
 
     $movimientoNomina = new Movimiento_nomina;
@@ -39,6 +40,7 @@ public function store(Request $request)
     $movimientoNomina->valor_pagar = $request->input('valor_pagar');
     $movimientoNomina->accion = $request->input('accion');
     $movimientoNomina->observacion = $request->input('observacion');
+    $movimientoNomina->fecha_movimiento = $request->input('fecha_movimiento');
 
     $movimientoNomina->save();
     return redirect()->route('deduccionesbonificaciones.show', ['id_empleado' => $request->input('id_empleado')])->with('success', 'Movimiento de nómina agregado exitosamente.');
@@ -77,6 +79,7 @@ public function update(Request $request, $id_empleado, $id_movimiento)
         'valor_pagar' => 'required|numeric',
         'accion' => 'required',
         'observacion' => 'required',
+        'fecha_movimiento' => 'required',
     ]);
 
     // Busca el movimiento de nómina
@@ -89,6 +92,7 @@ public function update(Request $request, $id_empleado, $id_movimiento)
     $movimientoNomina->valor_pagar = $request->input('valor_pagar');
     $movimientoNomina->accion = $request->input('accion');
     $movimientoNomina->observacion = $request->input('observacion');
+    $movimientoNomina->fecha_movimiento = $request->input('fecha_movimiento');
 
     $movimientoNomina->save();
 

@@ -23,6 +23,7 @@
                             <table id="tabla-deduccion-bonificacion" class="table table-bordered table-striped dataTable dtr-inline mt-1 table-head-fixed text-nowrap" style="width:100%">
                                 <thead>
                                     <tr>
+                                        <th>Fecha</th>
                                         <th>Descripción del concepto</th>
                                         <th>Valor a pagar</th>
                                         <th>Acción</th>
@@ -35,6 +36,7 @@
                                 <tbody>
                                 @foreach($movimientosNomina as $movimiento)
                                     <tr>
+                                        <td>{{ \Carbon\Carbon::parse($movimiento->fecha_movimiento)->format('d/m/Y') }}</td>
                                         <td>{{ $movimiento->concepto }}</td>
                                         <td>{{ $movimiento->valor_pagar }}</td>
                                         <td>{{ $movimiento->accion }}</td>
@@ -73,5 +75,5 @@
     @endif
   })(jQuery);
 </script>
-
+<script src="{{ asset('js/movimientos/movimientos.js') }}"></script>
 @stop

@@ -19,6 +19,15 @@
                             <input type="hidden" name="id_empleado" value="{{ $id_empleado }}">
 
                              <!-- Columna izquierda -->
+
+                             <div class="form-group">
+                                <label for="fecha_movimiento" class="text-secondary">Fecha*</label>
+                                <input type="date" name="fecha_movimiento" class="form-control{{ $errors->has('fecha_movimiento') ? ' is-invalid' : '' }}">
+                                @error('fecha_movimiento')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
                             <div class="form-group">
                                 <label for="concepto" class="text-secondary">Descripción del concepto*</label>
                                 <input type="text" name="concepto" class="form-control{{ $errors->has('concepto') ? ' is-invalid' : '' }}">

@@ -17,6 +17,7 @@ class Movimiento_nomina extends Model
         'valor_pagar',
         'accion',
         'observacion',
+        'fecha_movimiento'
     ];
 
     public function empleado()
