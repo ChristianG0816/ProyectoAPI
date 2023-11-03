@@ -328,6 +328,26 @@ return [
             'url'         => 'reporte-contrataciones',
             'icon'        => 'far fa-fw fa-file',
         ],
+        
+
+        ['header' => 'Administración',
+            'can'  => ['ver-usuario', 'ver-rol'],
+        ],
+        
+        [
+            'text' => 'Usuarios',
+            'url'  => 'usuarios',
+            'icon' => 'fas fa-fw fa-user',
+            'can' => 'ver-usuario',
+        ],
+        
+        [
+            'text' => 'Roles',
+            'url'  => 'roles',
+            'icon' => 'fas fa-fw fa-user',
+            'can'  => 'ver-rol', //Aqui se agrega el permiso
+        ],
+
         ['header' => 'account_settings'],
         [
             'text' => 'profile',

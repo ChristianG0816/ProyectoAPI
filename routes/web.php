@@ -6,6 +6,8 @@ use App\Http\Controllers\MunicipioController;
 use App\Http\Controllers\PuestoController;
 use App\Http\Controllers\ReporteContratacionesController;
 use App\Http\Controllers\DeduccionesBonificacionesController;
+use App\Http\Controllers\RolController;
+use App\Http\Controllers\UsuarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +26,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::group(['middleware' => ['auth']], function() {
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource("nomina", NominaController::class)->names('nomina');
 Route::get('deduccionesbonificaciones/{id_empleado}', [DeduccionesBonificacionesController::class, 'show'])->name('deduccionesbonificaciones.show');
@@ -32,10 +36,16 @@ Route::post('deduccionesbonificaciones', [DeduccionesBonificacionesController::c
 Route::get('deduccionesbonificaciones/{id_empleado}/edit/{id_movimiento}', [DeduccionesBonificacionesController::class, 'edit'])->name('deduccionesbonificaciones.edit');
 Route::post('deduccionesbonificaciones/{id_empleado}/{id_movimiento}', [DeduccionesBonificacionesController::class, 'update'])->name('deduccionesbonificaciones.update');
 
-
+//Rutas para seguridad
+Route::get('roles/data', [RolController::class, 'data'])->name('roles.data');
+Route::resource('roles', RolController::class);
+Route::get('usuarios/data', [UsuarioController::class, 'data'])->name('usuarios.data');
+Route::resource('usuarios', UsuarioController::class);
 
 Route::get('nomina/editPuesto/{id}', [NominaController::class, 'editPuesto'])->name('nomina.editPuesto');
 Route::patch('nomina/updatePuesto/{id}', [NominaController::class, 'updatePuesto'])->name('nomina.updatePuesto');
 Route::get('get-municipios', [MunicipioController::class, 'getMunicipios'])->name('get-municipios');
 Route::get('get-salario-puesto', [PuestoController::class, 'getSalarioPuesto'])->name('get-salario-puesto');
 Route::get('reporte-contrataciones/{filtro?}', [ReporteContratacionesController::class, 'index'])->name('reporte-contrataciones');
+
+});
