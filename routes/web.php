@@ -26,7 +26,12 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource("nomina", NominaController::class)->names('nomina');
-Route::resource("deduccionesbonificaciones", DeduccionesBonificacionesController::class)->names('deduccionesbonificaciones');
+Route::get('deduccionesbonificaciones/{id_empleado}', [DeduccionesBonificacionesController::class, 'show'])->name('deduccionesbonificaciones.show');
+Route::get('deduccionesbonificaciones/{id_empleado}/create', [DeduccionesBonificacionesController::class, 'create'])->name('deduccionesbonificaciones.create');
+Route::post('deduccionesbonificaciones', [DeduccionesBonificacionesController::class, 'store'])->name('deduccionesbonificaciones.store');
+
+
+
 Route::get('nomina/editPuesto/{id}', [NominaController::class, 'editPuesto'])->name('nomina.editPuesto');
 Route::patch('nomina/updatePuesto/{id}', [NominaController::class, 'updatePuesto'])->name('nomina.updatePuesto');
 Route::get('get-municipios', [MunicipioController::class, 'getMunicipios'])->name('get-municipios');

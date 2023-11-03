@@ -284,7 +284,7 @@
                                 </div>
                                 <div class="col-md-6 col-6 text-right">
                                     <a href="{{ route('nomina.index') }}" class="btn btn-danger">Regresar</a>
-                                    <a class="btn btn-outline-info btn-sm" href="{{ route('deduccionesbonificaciones.show', ['deduccionesbonificacione' => $empleado->id]) }}">Deducciones y Bonificaciones</a>
+                                    <a class="btn btn-outline-info btn-sm" href="{{ route('deduccionesbonificaciones.show', ['id_empleado' => $empleadoPuesto->id]) }}">Deducciones y Bonificaciones</a>
                                 </div>
                             </div>
                         </div>

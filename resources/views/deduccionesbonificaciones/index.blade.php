@@ -11,7 +11,7 @@
             <div class="card-header">
                 <h3 class="card-title">
                     <!--Sección de botones-->
-                    <a class="btn btn-sm btn-outline-warning" href="{{route('deduccionesbonificaciones.create')}}">Nuevo</a>
+                    <a class="btn btn-outline-info btn-sm" href="{{ route('deduccionesbonificaciones.create', ['id_empleado' => $empleado->id]) }}">Crear</a>
                   </h3>
             </div>
 
@@ -56,6 +56,21 @@
         </div>
     </div>
 </div>
+@stop
 
+@section('js')
+<script>
+  jQuery.noConflict();
+  (function($) {      
+    toastr.options = {"closeButton": true, "progressBar": true}
+    @if (Session::has('success'))
+      toastr.success("{{ session('success') }}");
+    @endif
+
+    @if (Session::has('error'))
+      toastr.error("{{ session('error') }}");
+    @endif
+  })(jQuery);
+</script>
 
 @stop
