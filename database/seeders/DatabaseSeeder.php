@@ -23,5 +23,6 @@ class DatabaseSeeder extends Seeder
         $this -> call([SeederTablaJornadaDia::class]);
         $this -> call([SeederTablaUnidadOrganizativa::class]);
         $this -> call([SeederTablaPuesto::class]);
+        $this -> call([SeederTablaEmpleado::class]);
     }
 }

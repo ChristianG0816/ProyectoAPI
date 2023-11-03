@@ -18,6 +18,7 @@ class CreateMovimientoNominaTable extends Migration
         $table->float('valor_pagar');
         $table->string('accion', 255);
         $table->string('observacion', 255);
+        $table->date('fecha_movimiento');
         $table->foreignId('id_empleado')->constrained('empleado')->onDelete('restrict')->onUpdate('cascade');
         $table->foreignId('id_tipo_frecuencia')->constrained('tipo_frecuencia')->onDelete('restrict')->onUpdate('cascade');
         $table->foreignId('id_tipo_movimiento_nomina')->constrained('tipo_movimiento_nomina')->onDelete('restrict')->onUpdate('cascade');
