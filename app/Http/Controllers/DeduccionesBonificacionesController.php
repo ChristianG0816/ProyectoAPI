@@ -56,18 +56,54 @@ public function store(Request $request)
     }
 
     //Debo de traerme el id del empleado y el id del movimiento
-    public function edit($id)
-    {
-        
-    }
+    public function edit($id_empleado, $id_movimiento){
+    // Aquí puedes cargar los datos del movimiento de nómina que deseas editar
+    $movimientoNomina = Movimiento_nomina::where('id_empleado', $id_empleado)->find($id_movimiento);
+    $tiposFrecuencia = Tipo_frecuencia::all();
+    $tiposMovimiento = Tipo_movimiento_nomina::all();
 
-    public function update(Request $request, $id)
-    {
-        
-    }
+    return view('deduccionesbonificaciones.editar', [
+        'tiposFrecuencia' => $tiposFrecuencia,
+        'tiposMovimiento' => $tiposMovimiento,
+        'id_empleado' => $id_empleado,
+        'movimientoNomina' => $movimientoNomina,
+    ]);
+}
 
-    public function destroy($id)
-    {
-        
-    }
+public function update(Request $request, $id_empleado, $id_movimiento)
+{
+    $request->validate([
+        'concepto' => 'required',
+        'valor_pagar' => 'required|numeric',
+        'accion' => 'required',
+        'observacion' => 'required',
+    ]);
+
+    // Busca el movimiento de nómina
+    $movimientoNomina = Movimiento_nomina::where('id_empleado', $id_empleado)->find($id_movimiento);
+
+    // Actualiza los datos del movimiento de nómina con los valores del formulario
+    $movimientoNomina->id_tipo_frecuencia = $request->input('id_tipo_frecuencia');
+    $movimientoNomina->id_tipo_movimiento_nomina = $request->input('id_tipo_movimiento_nomina');
+    $movimientoNomina->concepto = $request->input('concepto');
+    $movimientoNomina->valor_pagar = $request->input('valor_pagar');
+    $movimientoNomina->accion = $request->input('accion');
+    $movimientoNomina->observacion = $request->input('observacion');
+
+    $movimientoNomina->save();
+
+    return redirect()->route('deduccionesbonificaciones.show', ['id_empleado' => $id_empleado])->with('success', 'Movimiento de nómina actualizado exitosamente.');
+}
+
+public function destroy($id_empleado, $id_movimiento){
+    // Encuentra el movimiento de nómina que deseas eliminar
+    $movimientoNomina = Movimiento_nomina::where('id_empleado', $id_empleado)->find($id_movimiento);
+
+    // Realiza la eliminación del movimiento de nómina
+    $movimientoNomina->delete();
+
+    // Redirige de nuevo a la vista de movimientos con un mensaje de éxito
+    return redirect()->route('deduccionesbonificaciones.show', ['id_empleado' => $id_empleado])->with('success', 'Movimiento de nómina eliminado exitosamente.');
+}
+
 }
