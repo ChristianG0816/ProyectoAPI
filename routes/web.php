@@ -5,6 +5,7 @@ use App\Http\Controllers\NominaController;
 use App\Http\Controllers\MunicipioController;
 use App\Http\Controllers\PuestoController;
 use App\Http\Controllers\ReporteContratacionesController;
+use App\Http\Controllers\DeduccionesBonificacionesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource("nomina", NominaController::class)->names('nomina');
+Route::resource("deduccionesbonificaciones", DeduccionesBonificacionesController::class)->names('deduccionesbonificaciones');
 Route::get('nomina/editPuesto/{id}', [NominaController::class, 'editPuesto'])->name('nomina.editPuesto');
 Route::patch('nomina/updatePuesto/{id}', [NominaController::class, 'updatePuesto'])->name('nomina.updatePuesto');
 Route::get('get-municipios', [MunicipioController::class, 'getMunicipios'])->name('get-municipios');
