@@ -22,7 +22,7 @@ class ReporteContratacionesController extends Controller
         ];
         $this->validate($request, $rules, $messages);
 
-        $query = EmpleadoPuesto::where('actual', true);
+        $query = EmpleadoPuesto::query();
 
         // Obtén los valores de los filtros del Request
         $fecha_inicio = $request->input('fecha_inicio');
