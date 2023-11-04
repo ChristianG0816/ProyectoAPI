@@ -25,8 +25,5 @@ class ChangeTelefonoLengthInEmpleadoTable extends Migration
      */
     public function down()
     {
-        Schema::table('empleado', function (Blueprint $table) {
-            $table->string('telefono', 8)->change();
-        });
     }
 }
