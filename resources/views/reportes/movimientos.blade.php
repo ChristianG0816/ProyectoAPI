@@ -49,7 +49,7 @@
 
 
                     <div class="col-md-4 d-flex align-items-center justify-content-end">
-                        <a href="{{ route('reporte-movimientos') }}" class="btn btn-outline-secondary">Resetear</a>
+                        <a href="{{ route('reporte-movimientos') }}" class="btn btn-outline-secondary mx-1">Resetear</a>
                         <button type="submit" class="btn btn-outline-secondary">Filtrar</button>
                       </div>
                     </div>

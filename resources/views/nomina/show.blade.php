@@ -8,7 +8,15 @@
     <div class="col-md-8">
 
             <div class="card">
-                <div class="card-header">Información del Empleado</div>
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                        </div>
+                        <div class="col-lg-6 col-md-6 text-right">
+                            <a class="btn btn-info" href="{{ route('deduccionesbonificaciones.show', ['id_empleado' => $empleadoPuesto->id]) }}">Deducciones y Bonificaciones</a>
+                        </div>
+                    </div>
+                </div>
                 <div class="card-body">
                     <!-- <div id="table_wrapper" class="wrapper dt-bootstrap4"> -->
                         <div class="row">
@@ -263,7 +271,7 @@
                                     <div class="form-group">
                                         <label for="salario" class="text-secondary">Salario</label>
                                         <div>
-                                            <span>{{ $empleadoPuesto->salario_mensual }}</span>
+                                            <span>{{ "$" . " " . $empleadoPuesto->salario_mensual }}</span>
                                         </div>
                                     </div>
                                 </fieldset>
@@ -284,7 +292,6 @@
                                 </div>
                                 <div class="col-md-6 col-6 text-right">
                                     <a href="{{ route('nomina.index') }}" class="btn btn-danger">Regresar</a>
-                                    <a class="btn btn-outline-info btn-sm" href="{{ route('deduccionesbonificaciones.show', ['id_empleado' => $empleadoPuesto->id]) }}">Deducciones y Bonificaciones</a>
                                 </div>
                             </div>
                         </div>

@@ -45,7 +45,7 @@
               </div>
             </div>
             <div class="col-md-4 d-flex align-items-center justify-content-end">
-              <a href="{{ route('reporte-contrataciones') }}" class="btn btn-outline-secondary">Resetear</a>
+              <a href="{{ route('reporte-contrataciones') }}" class="btn btn-outline-secondary mx-1">Resetear</a>
               <button type="submit" class="btn btn-outline-secondary">Filtrar</button>
             </div>
           </div>
@@ -75,7 +75,7 @@
                                 <td>{{ $empleadoPuesto->empleado->primer_nombre }} {{ $empleadoPuesto->empleado->segundo_nombre }} {{ $empleadoPuesto->empleado->primer_apellido }} {{ $empleadoPuesto->empleado->segundo_apellido }}</td>
                                 <td>{{ $empleadoPuesto->puesto->nombre}}</td>
                                 <td>{{ $empleadoPuesto->puesto->unidad_organizativa->nombre}}</td>
-                                <td>{{ $empleadoPuesto->salario_mensual}}</td>
+                                <td>{{ "$" . " " . $empleadoPuesto->salario_mensual}}</td>
                                 <td>{{ $empleadoPuesto->fecha_inicio}}</td>
                                 <td>
                                   @if($empleadoPuesto->cambio_puesto)
