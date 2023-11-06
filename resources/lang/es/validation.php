@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'accepted'             => ':attribute debe ser aceptado.',
     'accepted_if'          => ':attribute debe ser aceptado cuando :other sea :value.',
@@ -126,13 +128,12 @@ return [
         'birthday'                 => 'cumpleaños',
         'body'                     => 'contenido',
         'city'                     => 'ciudad',
+        'confirm-password'         => 'confirmación de contraseña',
         'content'                  => 'contenido',
         'country'                  => 'país',
         'created_at'               => 'creado el',
         'creator'                  => 'creador',
         'current_password'         => 'contraseña actual',
-        'confirm-password'         => 'confirmación de contraseña',
-        'old-password'             => 'contraseña actual',
         'date'                     => 'fecha',
         'date_of_birth'            => 'fecha de nacimiento',
         'day'                      => 'día',
@@ -160,6 +161,7 @@ return [
         'name'                     => 'nombre',
         'national_code'            => 'código nacional',
         'number'                   => 'número',
+        'old-password'             => 'contraseña actual',
         'password'                 => 'contraseña',
         'password_confirmation'    => 'confirmación de la contraseña',
         'phone'                    => 'teléfono',
@@ -192,5 +194,4 @@ return [
         'username'                 => 'usuario',
         'year'                     => 'año',
     ],
-    'custom'               => [],
 ];

@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-@section('title', 'Reportes')
+@section('title', 'Reporte de Nuevas Contrataciones y Ascensos del Personal')
 @section('content_header')
 <h1 class="text-center">Nuevas contrataciones y ascensos del personal</h1>
 @stop
