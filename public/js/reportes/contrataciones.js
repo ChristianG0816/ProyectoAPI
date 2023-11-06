@@ -52,7 +52,13 @@ $(document).ready(function() {
                     var date = d.toISOString().slice(0,10);
                     var time = d.getHours() + "-" + d.getMinutes() + "-" + d.getSeconds();
                     return 'Reporte de Nuevas contrataciones y ascensos del personal_' + date + "_" + time;
-                }
+                },
+                customize: function ( doc ) {
+                    doc.content.splice( 0, 0, {
+                        text: 'Atessa SEM de CV',
+                        alignment: 'right'
+                    } );
+                },
             },
             {
                 extend: 'excel',
@@ -62,7 +68,7 @@ $(document).ready(function() {
                     var date = d.toISOString().slice(0,10);
                     var time = d.getHours() + "-" + d.getMinutes() + "-" + d.getSeconds();
                     return 'Reporte de Nuevas contrataciones y ascensos del personal_' + date + "_" + time;
-                }
+                }                          
             }
         ],
         columnDefs: [

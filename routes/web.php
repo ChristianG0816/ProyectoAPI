@@ -21,15 +21,15 @@ use App\Http\Controllers\ReporteMovimientosController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
 Route::group(['middleware' => ['auth']], function() {
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource("nomina", NominaController::class)->names('nomina');
 Route::get('deduccionesbonificaciones/{id_empleado}', [DeduccionesBonificacionesController::class, 'show'])->name('deduccionesbonificaciones.show');
 Route::get('deduccionesbonificaciones/{id_empleado}/create', [DeduccionesBonificacionesController::class, 'create'])->name('deduccionesbonificaciones.create');
