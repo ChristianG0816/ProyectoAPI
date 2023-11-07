@@ -9,6 +9,7 @@ use App\Http\Controllers\DeduccionesBonificacionesController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ReporteMovimientosController;
+use App\Http\Controllers\HistoricoTrabajoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,5 +50,13 @@ Route::get('get-municipios', [MunicipioController::class, 'getMunicipios'])->nam
 Route::get('get-salario-puesto', [PuestoController::class, 'getSalarioPuesto'])->name('get-salario-puesto');
 Route::get('reporte-contrataciones/{filtro?}', [ReporteContratacionesController::class, 'index'])->name('reporte-contrataciones');
 Route::get('reporte-movimientos/{filtro?}', [ReporteMovimientosController::class, 'index'])->name('reporte-movimientos');
+
+//Rutas de historico
+//Route::resource('historicotrabajo', HistoricoTrabajoController::class);
+Route::get('historicotrabajo/{id_empleado}', [HistoricoTrabajoController::class, 'show'])->name('historicotrabajo.show');
+Route::get('historicotrabajo/{id_empleado_puesto}/create', [HistoricoTrabajoController::class, 'create'])->name('historicotrabajo.create');
+Route::get('historicotrabajo/{id_empleado_puesto}/edit/{id_historico}', [HistoricoTrabajoController::class, 'edit'])->name('historicotrabajo.edit');
+Route::post('historicotrabajo', [HistoricoTrabajoController::class, 'store'])->name('historicotrabajo.store');
+Route::post('historicotrabajo/{id_historico}', [HistoricoTrabajoController::class, 'update'])->name('historicotrabajo.update');
 
 });

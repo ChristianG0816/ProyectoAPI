@@ -9,7 +9,7 @@ class HistoricoTrabajo extends Model
 {
     use HasFactory;
     
-    protected $table = 'historico_trabajos';
+    protected $table = 'historico_trabajo';
 
     protected $fillable = [
         'id_empleado_puesto',
@@ -24,4 +24,9 @@ class HistoricoTrabajo extends Model
         'horas_normal',
         'salario_total'
     ];
+
+    public function empleado()
+    {
+        return $this->belongsTo(EmpleadoPuesto::class, 'id_empleado_puesto');
+    }
 }

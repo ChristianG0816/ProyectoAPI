@@ -15,18 +15,24 @@ class CreateHistoricoTrabajoTable extends Migration
     {
         Schema::create('historico_trabajo', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_empleado_puesto');
+            $table->unsignedBigInteger('id_empleado_puesto');
             $table->string('unidad', 100);
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
             $table->integer('dias_laborados');
             $table->string('turno', 100);
-            $table->time('horas_extra_normal');
-            $table->time('horas_dia_descanso');
-            $table->time('horas_dias_festivo');
-            $table->time('horas_normal');
+            $table->integer('horas_extra_normal');
+            $table->integer('horas_dia_descanso');
+            $table->integer('horas_dias_festivo');
+            $table->integer('horas_normal');
             $table->double('salario_total');
             $table->timestamps();
+
+            // Definición de la relación
+            $table->foreign('id_empleado_puesto')
+                  ->references('id')
+                  ->on('empleado_puesto')
+                  ->onDelete('cascade'); // Esto establece la acción en cascada si el empleado es eliminado
         });
     }
 
