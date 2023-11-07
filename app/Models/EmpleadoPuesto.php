@@ -25,4 +25,9 @@ class EmpleadoPuesto extends Model
     {
         return $this->belongsTo(Jornada::class, 'id_jornada');
     }
+    
+    public function historicoTrabajo()
+    {
+        return $this->hasMany(HistoricoTrabajo::class, 'id_empleado_puesto');
+    }
 }
