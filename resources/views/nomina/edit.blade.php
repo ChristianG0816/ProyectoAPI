@@ -252,13 +252,16 @@
                                     <select name="jornada" class="form-control{{ $errors->has('jornada') ? ' is-invalid' : '' }}" tabindex="26">
                                         <option value="" {{ old('jornada') == '' ? 'selected' : '' }}>Seleccione la jornada</option>
                                         @foreach($jornadas as $jornada)
+                                            @php
+                                                $dias = implode(', ', $jornadasDia[$jornada->id] ?? []);
+                                            @endphp
                                             <option value="{{ $jornada->id }}" {{ old('jornada', $empleadoPuesto->jornada->id) == $jornada->id ? 'selected' : '' }}>
-                                                {{ $jornada->codigo }}
+                                                {{ $dias }} [{{ $jornada->hora_entrada }} - {{ $jornada->hora_salida }}]
                                             </option>
                                         @endforeach
                                     </select>
                                     @error('jornada')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
