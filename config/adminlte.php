@@ -323,6 +323,12 @@ return [
             'url'         => 'reporte-movimientos',
             'icon'        => 'fas fa-file-alt',
         ],
+
+        [
+            'text'        => 'Horas Trabajadas de Empleados', 
+            'url'         => 'reporte-horas',
+            'icon'        => 'fas fa-file-alt',
+        ],
         
 
         ['header' => 'Administración',

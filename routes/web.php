@@ -10,7 +10,7 @@ use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ReporteMovimientosController;
 use App\Http\Controllers\HistoricoTrabajoController;
-
+use App\Http\Controllers\ReporteHorasController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -58,5 +58,6 @@ Route::get('historicotrabajo/{id_empleado_puesto}/create', [HistoricoTrabajoCont
 Route::get('historicotrabajo/{id_empleado_puesto}/edit/{id_historico}', [HistoricoTrabajoController::class, 'edit'])->name('historicotrabajo.edit');
 Route::post('historicotrabajo', [HistoricoTrabajoController::class, 'store'])->name('historicotrabajo.store');
 Route::post('historicotrabajo/{id_historico}', [HistoricoTrabajoController::class, 'update'])->name('historicotrabajo.update');
+Route::get('reporte-horas/{filtro?}', [ReporteHorasController::class, 'index'])->name('reporte-horas');
 
 });
