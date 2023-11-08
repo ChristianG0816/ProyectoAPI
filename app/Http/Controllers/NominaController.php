@@ -11,6 +11,8 @@ use App\Models\Puesto;
 use App\Models\Jornada;
 use App\Models\Empleado;
 use App\Models\DocumentoEmpleado;
+use App\Models\JornadaDia;
+use App\Models\Dia;
 
 class NominaController extends Controller
 {
@@ -41,7 +43,13 @@ class NominaController extends Controller
         $tipos_documentos = TipoDocumento::all();
         $puestos = Puesto::all();
         $jornadas = Jornada::all();
-        return view('nomina.create', compact('nacionalidades', 'estado_civil', 'sexo', 'departamentos', 'bancos', 'tipos_cuentas', 'tipos_documentos', 'puestos', 'jornadas'));
+        foreach ($jornadas as $jornada) {
+            $jornadasDia[$jornada->id] = JornadaDia::where('id_jornada', $jornada->id)
+                ->join('dia', 'jornada_dia.id_dia', '=', 'dia.id')
+                ->pluck('nombre')
+                ->toArray();
+        }
+        return view('nomina.create', compact('jornadasDia','nacionalidades', 'estado_civil', 'sexo', 'departamentos', 'bancos', 'tipos_cuentas', 'tipos_documentos', 'puestos', 'jornadas'));
     }
 
     public function store(Request $request)
@@ -193,6 +201,12 @@ class NominaController extends Controller
         $tipos_documentos = TipoDocumento::all();
         $puestos = Puesto::all();
         $jornadas = Jornada::all();
+        foreach ($jornadas as $jornada) {
+            $jornadasDia[$jornada->id] = JornadaDia::where('id_jornada', $jornada->id)
+                ->join('dia', 'jornada_dia.id_dia', '=', 'dia.id')
+                ->pluck('nombre')
+                ->toArray();
+        }
         //Obtener documento dui del empleado
         $dui = DocumentoEmpleado::where('id_empleado', $id)->where('id_tipo_documento', 1)->pluck('numero')->first();
         //Obtener documento nit del empleado
@@ -205,7 +219,7 @@ class NominaController extends Controller
         $pasaporte = DocumentoEmpleado::where('id_empleado', $id)->where('id_tipo_documento', 5)->pluck('numero')->first();
         //Obtener documento residencia del empleado
         $residencia = DocumentoEmpleado::where('id_empleado', $id)->where('id_tipo_documento', 6)->pluck('numero')->first();
-        return view('nomina.edit', compact('empleado', 'nacionalidades', 'estado_civil', 'sexo', 'departamentos', 'bancos', 'tipos_cuentas', 'tipos_documentos', 'puestos', 'jornadas', 'dui', 'nit', 'nup', 'isss', 'pasaporte', 'residencia', 'empleadoPuesto'));
+        return view('nomina.edit', compact('jornadasDia', 'empleado', 'nacionalidades', 'estado_civil', 'sexo', 'departamentos', 'bancos', 'tipos_cuentas', 'tipos_documentos', 'puestos', 'jornadas', 'dui', 'nit', 'nup', 'isss', 'pasaporte', 'residencia', 'empleadoPuesto'));
     }
 
     public function update(Request $request, $id)
@@ -321,6 +335,10 @@ class NominaController extends Controller
     public function show($id)
     {
         $empleadoPuesto = EmpleadoPuesto::where('id', $id)->first();
+        $jornadaEmpleadoPuesto = JornadaDia::where('id_jornada', $empleadoPuesto->id_jornada)
+            ->join('dia', 'jornada_dia.id_dia', '=', 'dia.id')
+            ->pluck('nombre')
+            ->toArray();
         
         //Obtener el empleado para deducciones y bonificaciones
         $empleado = Empleado::where('id', $id)->first();
@@ -331,7 +349,7 @@ class NominaController extends Controller
         $isss = DocumentoEmpleado::where('id_empleado', $empleadoPuesto->empleado->id)->where('id_tipo_documento', 4)->pluck('numero')->first();
         $pasaporte = DocumentoEmpleado::where('id_empleado', $empleadoPuesto->empleado->id)->where('id_tipo_documento', 5)->pluck('numero')->first();
         $residencia = DocumentoEmpleado::where('id_empleado', $empleadoPuesto->empleado->id)->where('id_tipo_documento', 6)->pluck('numero')->first();
-        return view('nomina.show', compact('empleadoPuesto','empleado', 'dui', 'nit', 'nup', 'isss', 'pasaporte', 'residencia'));
+        return view('nomina.show', compact('jornadaEmpleadoPuesto','empleadoPuesto','empleado', 'dui', 'nit', 'nup', 'isss', 'pasaporte', 'residencia'));
     }
 
     public function editPuesto($id)
@@ -339,7 +357,13 @@ class NominaController extends Controller
         $empleadoPuesto = EmpleadoPuesto::where('id', $id)->first();
         $puestos = Puesto::all();
         $jornadas = Jornada::all();
-        return view('nomina.editPuesto', compact('empleadoPuesto', 'puestos', 'jornadas'));
+        foreach ($jornadas as $jornada) {
+            $jornadasDia[$jornada->id] = JornadaDia::where('id_jornada', $jornada->id)
+                ->join('dia', 'jornada_dia.id_dia', '=', 'dia.id')
+                ->pluck('nombre')
+                ->toArray();
+        }
+        return view('nomina.editPuesto', compact('jornadasDia', 'empleadoPuesto', 'puestos', 'jornadas'));
     }
 
     public function updatePuesto(Request $request, $id)

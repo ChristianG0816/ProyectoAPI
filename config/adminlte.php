@@ -313,22 +313,26 @@ return [
         ['header' => 'Reportes',],
 
         [
-            'text'        => 'Contrataciones y Ascensos', 
-            'url'         => 'reporte-contrataciones',
+            'text'        => 'Horas Trabajadas de Empleados', 
+            'url'         => 'reporte-horas',
             'icon'        => 'fas fa-file-alt',
         ],
-
         [
             'text'        => 'Deducciones y Bonificaciones de Empleados', 
             'url'         => 'reporte-movimientos',
             'icon'        => 'fas fa-file-alt',
         ],
-
         [
-            'text'        => 'Horas Trabajadas de Empleados', 
-            'url'         => 'reporte-horas',
+            'text'        => 'Contrataciones y Ascensos', 
+            'url'         => 'reporte-contrataciones',
             'icon'        => 'fas fa-file-alt',
         ],
+        [
+            'text'        => 'Aumentos y Disminuciones de Salario de Empleados', 
+            'url'         => 'reporte',
+            'icon'        => 'fas fa-file-alt',
+        ],
+
         
 
         ['header' => 'Administración',

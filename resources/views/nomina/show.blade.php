@@ -261,7 +261,7 @@
                                     <div class="form-group">
                                         <label for="jornada" class="text-secondary">Jornada</label>
                                         <div>
-                                            <span>{{ $empleadoPuesto->jornada->codigo }}</span>
+                                            <span>{{ implode(', ', $jornadaEmpleadoPuesto) }} [{{ $empleadoPuesto->jornada->hora_entrada }} - {{ $empleadoPuesto->jornada->hora_salida }}]</span>
                                         </div>
                                     </div>
                                 </fieldset>
