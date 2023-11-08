@@ -14,11 +14,6 @@ class HistoricoTrabajoController extends Controller
     // Método para mostrar una lista de historicos de trabajo
     public function index()
     {
-        //$historicoTrabajos = HistoricoTrabajo::all();
-        $empleados = EmpleadoPuesto::where('actual', true)->get()->sortBy('empleado.primer_nombre');
-        dd($empleados);
-        
-        return view('historicoTrabajos.index', compact('historicoTrabajos'));
     }
 
     // Método para mostrar el formulario de creación
