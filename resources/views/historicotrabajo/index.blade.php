@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 @section('title', 'Historico Trabajo')
 @section('content_header')
-<h1>Registro de Horas de Trabajo del Empleado con código {{$empleado->codigo}}</h1>
+<h1>Registro de Horas de Trabajo del Empleado con código {{$empleado->empleado->codigo}}</h1>
 @stop
 @section('content')
 <div class="row">
