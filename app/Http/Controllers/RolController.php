@@ -49,19 +49,32 @@ class RolController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-{
-    $this->validate($request, [
-        'name' => 'required',
-        'permission' => 'required',
-    ], [
-        'permission.required' => 'Debes seleccionar al menos un permiso.',
-    ]);
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'permission' => 'required|array', // Asegura que 'permission' sea un arreglo
+        ], [
+            'permission.required' => 'Debes seleccionar al menos un permiso.',
+        ]);
 
-    $role = Role::create(['name' => $request->input('name')]);
-    $role->syncPermissions($request->input('permission'));
+        $role = Role::create(['name' => $request->input('name')]);
 
-    return redirect()->route('roles.index')->with('success', 'Rol creado con éxito');
-}
+        // Verifica la existencia de los permisos antes de sincronizar
+        $permissions = $request->input('permission');
+        $validPermissions = [];
+
+        foreach ($permissions as $permissionName) {
+            $permission = Permission::where('name', $permissionName)->first();
+
+            if ($permission) {
+                $validPermissions[] = $permission->id;
+            }
+        }
+
+        $role->syncPermissions($validPermissions);
+
+        return redirect()->route('roles.index')->with('success', 'Rol creado con éxito');
+    }
 
 
     /**
