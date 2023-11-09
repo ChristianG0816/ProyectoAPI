@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NominaController;
 use App\Http\Controllers\MunicipioController;
 use App\Http\Controllers\PuestoController;
+use App\Http\Controllers\HistoricoCambioSalarioController;
+use App\Http\Controllers\ReporteCambioSalarioController;
 use App\Http\Controllers\ReporteContratacionesController;
 use App\Http\Controllers\DeduccionesBonificacionesController;
 use App\Http\Controllers\RolController;
@@ -44,6 +46,8 @@ Route::resource('roles', RolController::class);
 Route::get('usuarios/data', [UsuarioController::class, 'data'])->name('usuarios.data');
 Route::resource('usuarios', UsuarioController::class);
 
+Route::get('nomina/editSalario/{id}', [HistoricoCambioSalarioController::class, 'edit'])->name('nomina.editSalario');
+Route::patch('nomina/updateSalario/{id}', [HistoricoCambioSalarioController::class, 'update'])->name('nomina.updateSalario');
 Route::get('nomina/editPuesto/{id}', [NominaController::class, 'editPuesto'])->name('nomina.editPuesto');
 Route::patch('nomina/updatePuesto/{id}', [NominaController::class, 'updatePuesto'])->name('nomina.updatePuesto');
 Route::get('get-municipios', [MunicipioController::class, 'getMunicipios'])->name('get-municipios');
@@ -60,4 +64,8 @@ Route::post('historicotrabajo', [HistoricoTrabajoController::class, 'store'])->n
 Route::post('historicotrabajo/{id_historico}', [HistoricoTrabajoController::class, 'update'])->name('historicotrabajo.update');
 Route::get('reporte-horas/{filtro?}', [ReporteHorasController::class, 'index'])->name('reporte-horas');
 
+
+//Historico salario
+Route::get('reporte-salario/{filtro?}', [ReporteCambioSalarioController::class, 'index'])->name('reporte-salarios');
+Route::get('historicosalario/{id}', [HistoricoCambioSalarioController::class, 'show'])->name('historicosalario.show');
 });
