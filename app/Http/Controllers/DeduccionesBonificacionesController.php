@@ -11,6 +11,14 @@ use App\Models\Tipo_movimiento_nomina;
 class DeduccionesBonificacionesController extends Controller
 {
 
+    function __construct()
+    {
+        $this->middleware('permission:ver-movimiento|crear-movimiento|editar-movimiento|borrar-movimiento', ['only'=>['show']]);
+        $this->middleware('permission:crear-movimiento', ['only'=>['create', 'store']]);
+        $this->middleware('permission:editar-movimiento', ['only'=>['edit, update']]);
+        $this->middleware('permission:borrar-movimiento', ['only'=>['destroy']]);
+    }
+
     public function create($id_empleado)
 {
     $tiposFrecuencia = Tipo_frecuencia::all();

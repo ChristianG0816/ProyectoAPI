@@ -11,7 +11,9 @@
             <div class="card-header">
                 <h3 class="card-title">
                     <!--Sección de botones-->
+                    @can('crear-movimiento')
                     <a class="btn btn-outline-info btn-sm" href="{{ route('deduccionesbonificaciones.create', ['id_empleado' => $empleado->id]) }}">Crear</a>
+                    @endcan
                   </h3>
             </div>
 
@@ -44,9 +46,15 @@
                                         <td>{{ $movimiento->tipoMovimientoNomina->nombre }}</td>
                                         <td>{{ $movimiento->observacion }}</td>
                                         <td>
+                                            @can('editar-movimiento')
                                             <a class="btn btn-outline-info btn-sm ml-1" href="{{ route('deduccionesbonificaciones.edit', 
                                             ['id_empleado' => $empleado->id, 'id_movimiento' => $movimiento->id]) }}">Editar</a>
+                                            @endcan
+
+                                            @can('borrar-movimiento')
                                             <a class="btn btn-outline-danger btn-sm ml-1" href="#">Eliminar</a>
+                                            @endcan
+
                                         </td>
                                     </tr>
                                 @endforeach
