@@ -32,6 +32,19 @@ class SeederTablaPermisos extends Seeder
             Permission::create(['name' => 'borrar-usuario']),
         ];
 
+        $empleados = [
+            Permission::create(['name' => 'ver-nomina']),
+            Permission::create(['name' => 'ver-empleado']),
+            Permission::create(['name' => 'crear-empleado']),
+            Permission::create(['name' => 'editar-empleado']),
+            Permission::create(['name' => 'borrar-empleado']),
+            Permission::create(['name' => 'modificar-puesto']),
+        ];
+
+        $reporteContrataciones = [
+            Permission::create(['name' => 'ver-reporte-contrataciones']),
+        ];
+
         $roleAdministrador = Role::create(['name' => 'Administrador'])->givePermissionTo([
             $roles, $usuarios
         ]);
@@ -43,12 +56,12 @@ class SeederTablaPermisos extends Seeder
 
         //Rol Tactico
         $roleAnalistaRecursosHumanos = Role::create(['name' => 'Analista Recursos Humanos'])->givePermissionTo([
-            
+            $reporteContrataciones
         ]);
 
         //Rol Operativo
         $roleJefeDeEquipo = Role::create(['name' => 'Jefe de Equipo'])->givePermissionTo([
-            
+            $empleados
         ]);
 
     }
