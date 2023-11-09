@@ -322,6 +322,7 @@ return [
             'text'        => 'Deducciones y Bonificaciones de Empleados', 
             'url'         => 'reporte-movimientos',
             'icon'        => 'fas fa-file-alt',
+            'can'         => 'ver-reporte-deducciones-bonificaciones',
         ],
         [
             'text'        => 'Contrataciones y Ascensos', 
