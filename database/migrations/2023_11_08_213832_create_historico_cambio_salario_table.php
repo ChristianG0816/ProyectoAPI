@@ -14,7 +14,7 @@ class CreateHistoricoCambioSalarioTable extends Migration
     public function up()
     {
         Schema::create('historico_cambio_salario', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->float('salario_nuevo');
             $table->float('salario_anterior');
             $table->date('fecha_cambio_salario');

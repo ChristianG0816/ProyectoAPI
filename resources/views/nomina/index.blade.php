@@ -40,7 +40,7 @@
                             <a class="btn btn-outline-warning btn-sm ml-1" href="{{ route('nomina.edit', ['nomina' => $empleado->empleado->id]) }}">Editar</a>
                             <a class="btn btn-outline-danger btn-sm ml-1" href="#">Eliminar</a>
                             <a class="btn btn-outline-dark btn-sm ml-1" href="{{ route('nomina.editPuesto', ['id' => $empleado->id]) }}">Modificar Puesto</a>
-                            <a class="btn btn-outline-success btn-sm ml-1" href="#">Modificar Salario</a>
+                            <a class="btn btn-outline-success btn-sm ml-1" href="{{ route('nomina.editSalario', ['id' => $empleado->id]) }}">Modificar Salario</a>
                           </td>
                         </tr>
                       @endforeach

@@ -14,6 +14,7 @@
                         </div>
                         <div class="col-lg-6 col-md-6 text-right">
                             <a class="btn btn-info" href="{{ route('historicotrabajo.show', ['id_empleado' => $empleadoPuesto->id]) }}">Historico Trabajo</a>
+                            <a class="btn btn-info" href="{{ route('historicosalario.show', ['id' => $empleadoPuesto->id]) }}">Historico Salario</a>
                             <a class="btn btn-info" href="{{ route('deduccionesbonificaciones.show', ['id_empleado' => $empleadoPuesto->id]) }}">Deducciones y Bonificaciones</a>
                         </div>
                     </div>
