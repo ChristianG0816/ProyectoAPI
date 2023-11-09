@@ -308,6 +308,7 @@ return [
             'text'        => 'Nomina',
             'url'         => 'nomina',
             'icon'        => 'fas fa-user-tie',
+            'can'         => 'ver-nomina',
         ],
 
         ['header' => 'Reportes',],
@@ -326,6 +327,7 @@ return [
             'text'        => 'Contrataciones y Ascensos', 
             'url'         => 'reporte-contrataciones',
             'icon'        => 'fas fa-file-alt',
+            'can'         => 'ver-reporte-contrataciones',
         ],
         [
             'text'        => 'Aumentos y Disminuciones de Salario de Empleados', 
