@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 @section('title', 'Deducciones y Bonificaciones')
 @section('content_header')
-    <h1>Deducciones y Bonificaciones del empleado con código {{$empleado->empleado->codigo}}</h1>
+    <h1>Deducciones y Bonificaciones del empleado con código {{$empleado->codigo}}</h1>
 @stop
 
 @section('content')
