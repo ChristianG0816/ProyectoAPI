@@ -22,5 +22,30 @@ class SeederTablaUsuarios extends Seeder
 
         $administrador->assignRole('Administrador');
 
+        $estrategico = User::create([
+            'name'=> 'Marlon Paz',
+            'email' => 'marlon@gmail.com',
+            'password' => bcrypt('12345678'),
+        ]);
+
+        $estrategico->assignRole('Gerente Recursos Humanos');
+
+        $tactico = User::create([
+            'name'=> 'Camila Pérez',
+            'email' => 'camila@gmail.com',
+            'password' => bcrypt('12345678'),
+        ]);
+
+        $tactico->assignRole('Analista Recursos Humanos');
+
+        
+        $operativo = User::create([
+            'name'=> 'Carmen Suarez',
+            'email' => 'carmen@gmail.com',
+            'password' => bcrypt('12345678'),
+        ]);
+
+        $operativo->assignRole('Jefe de Equipo');
+
     }
 }

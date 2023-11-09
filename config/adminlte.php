@@ -333,6 +333,7 @@ return [
             'text'        => 'Aumentos y Disminuciones de Salario de Empleados', 
             'url'         => 'reporte-salario',
             'icon'        => 'fas fa-file-alt',
+            'can'         => 'ver-reporte-cambios-salario',
         ],
 
         
