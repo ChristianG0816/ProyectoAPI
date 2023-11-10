@@ -215,7 +215,7 @@ class SeederTablaEmpleado extends Seeder
         Movimiento_nomina::create([
             'id_empleado' => '1',
             'id_tipo_frecuencia' => '2',
-            'id_tipo_movimiento_nomina' => '2',
+            'id_tipo_movimiento_nomina' => '1',
             'concepto' => 'Deducciones Personales',
             'valor_pagar' => '130.00',
             'accion' => 'Se dara por dos cuotas',
@@ -245,6 +245,17 @@ class SeederTablaEmpleado extends Seeder
             'accion' => 'Se dara por un mes',
             'observacion' => 'Ninguna',
             'fecha_movimiento' => '2023-10-12'
+        ]);
+
+        Movimiento_nomina::create([
+            'id_empleado' => '2',
+            'id_tipo_frecuencia' => '2',
+            'id_tipo_movimiento_nomina' => '1',
+            'concepto' => 'Comisiones por ventas',
+            'valor_pagar' => '50.00',
+            'accion' => 'Se dara por una semana',
+            'observacion' => 'Ninguna',
+            'fecha_movimiento' => '2023-11-12'
         ]);
 
 
