@@ -28,8 +28,8 @@ class HistoricoTrabajoController extends Controller
     {
         // Validación de datos
         $request->validate([
-            'fecha_inicio' => 'required',
-            'fecha_fin' => 'required',
+            'fecha_inicio' => 'required|date|after_or_equal:2023-01-01',
+            'fecha_fin' => 'required|date|after_or_equal:2023-01-01',
             'dias_laborados' => 'required',
             'turno' => 'required',
             'horas_extra_normal' => 'required|numeric',
@@ -66,7 +66,7 @@ class HistoricoTrabajoController extends Controller
         $historico->save();
 
         // Redirige a la lista de historicos de trabajo después de crear uno nuevo
-        return redirect()->route('historicotrabajo.show',['id_empleado'=>$empleadoPuesto->id_empleado]);
+        return redirect()->route('historicotrabajo.show',['id_empleado'=>$empleadoPuesto->id_empleado])->with('success', 'Registro agregado con exito');
     }
 
     // Método para mostrar los detalles de un historico de trabajo específico
