@@ -66,6 +66,7 @@
                                         <th>Código Empleado</th>
                                         <th>Nombre Empleado</th>
                                         <th>Fecha</th>
+                                        <th>Concepto</th>
                                         <th>Tipo de Movimiento</th>
                                         <th>Valor</th>
                                         <th>Acción</th>
@@ -82,6 +83,7 @@
                                     $movimiento->empleado->primer_apellido . " " . 
                                     $movimiento->empleado->segundo_apellido }}</td>
                                     <td>{{ \Carbon\Carbon::parse($movimiento->fecha_movimiento)->format('d/m/Y') }}</td>
+                                    <td>{{ $movimiento->concepto }}</td>
                                     <td>{{ $movimiento->tipoMovimientoNomina->nombre }}</td>
                                     <td>{{ "$" . " " . $movimiento->valor_pagar }}</td>
                                     <td>{{ $movimiento->accion }}</td>

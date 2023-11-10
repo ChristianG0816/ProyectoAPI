@@ -44,7 +44,32 @@ $(document).ready(function() {
             "<'row'<'col-sm-12't>>" + // Tabla principal
             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
         buttons: [
-            'pdf', 'excel'  // Agrega los botones que deseas
+            {
+                extend: 'pdf',
+                title: 'Reporte de Bonificaciones y deducciones de Personal',
+                filename: function(){
+                    var d = new Date();
+                    var date = d.toISOString().slice(0,10);
+                    var time = d.getHours() + "-" + d.getMinutes() + "-" + d.getSeconds();
+                    return 'Reporte de Bonificaciones y deducciones de Personal_' + date + "_" + time;
+                },
+                customize: function ( doc ) {
+                    doc.content.splice( 0, 0, {
+                        text: 'Atessa SEM de CV',
+                        alignment: 'right'
+                    } );
+                },
+            },
+            {
+                extend: 'excel',
+                title: 'Reporte de Bonificaciones y deducciones de Personal',
+                filename: function(){
+                    var d = new Date();
+                    var date = d.toISOString().slice(0,10);
+                    var time = d.getHours() + "-" + d.getMinutes() + "-" + d.getSeconds();
+                    return 'Reporte de Bonificaciones y deducciones de Personal_' + date + "_" + time;
+                }                          
+            }
         ],
         columnDefs: [
             { width: '10%', targets: 0 },
