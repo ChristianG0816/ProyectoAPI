@@ -317,6 +317,7 @@ return [
             'text'        => 'Horas Trabajadas de Empleados', 
             'url'         => 'reporte-horas',
             'icon'        => 'fas fa-file-alt',
+            'can'         => 'ver-reporte-horas',
         ],
         [
             'text'        => 'Deducciones y Bonificaciones de Empleados', 

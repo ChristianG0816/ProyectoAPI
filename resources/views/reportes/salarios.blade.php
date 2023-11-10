@@ -30,7 +30,7 @@
               <div class="form-group">
                   <label for="puesto" class="text-secondary">Puesto</label>
                   <select name="puesto" class="form-control{{ $errors->has('puesto') ? ' is-invalid' : '' }}" tabindex="3">
-                      <option value="" {{ old('puesto', $puesto) == '' ? 'selected' : '' }}>Seleccione la unidad organizativa</option>
+                      <option value="" {{ old('puesto', $puesto) == '' ? 'selected' : '' }}>Seleccione un puesto de trabajo</option>
                       @foreach($puestos as $p)
                           <option value="{{ $p->id }}" {{ old('puesto', $puesto) == $p->id ? 'selected' : '' }}>
                               {{ $p->nombre }}
@@ -54,7 +54,7 @@
           <div class="row">
             <div class="col-sm-12 card-body table-responsive p-0">
                 <!--Sección de tabla-->
-                <table id="tabla-nomina" class="table table-bordered table-striped dataTable dtr-inline mt-1 table-head-fixed text-nowrap" style="width:100%">
+                <table id="tabla-salario" class="table table-bordered table-striped dataTable dtr-inline mt-1 table-head-fixed text-nowrap" style="width:100%">
                     <thead>
                         <tr>
                             <th>Codigo</th>
