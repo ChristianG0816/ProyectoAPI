@@ -67,7 +67,7 @@ $(document).ready(function() {
                     var d = new Date();
                     var date = d.toISOString().slice(0,10);
                     var time = d.getHours() + "-" + d.getMinutes() + "-" + d.getSeconds();
-                    return 'Reporte de Nuevas contrataciones y ascensos del personal_' + date + "_" + time;
+                    return 'Reporte de Aumentos y Disminuciones de Salarios del Personal_' + date + "_" + time;
                 }                          
             }
         ],

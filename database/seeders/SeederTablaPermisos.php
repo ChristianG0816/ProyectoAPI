@@ -60,6 +60,9 @@ class SeederTablaPermisos extends Seeder
         $reporteMovimientos = [
             Permission::create(['name' => 'ver-reporte-deducciones-bonificaciones']),
         ];
+        $reporteHoras = [
+            Permission::create(['name' => 'ver-reporte-horas']),
+        ];
 
         $roleAdministrador = Role::create(['name' => 'Administrador'])->givePermissionTo([
             $roles, $usuarios
@@ -77,7 +80,7 @@ class SeederTablaPermisos extends Seeder
 
         //Rol Operativo
         $roleJefeDeEquipo = Role::create(['name' => 'Jefe de Equipo'])->givePermissionTo([
-            $empleados, $reporteMovimientos, $movimientos
+            $empleados, $reporteMovimientos, $movimientos, $reporteHoras
         ]);
 
     }
